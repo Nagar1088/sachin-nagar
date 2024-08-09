@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Success</title>
+</head>
+<body>
+    <h1>File Upload Successful</h1>
+    <p>File has been uploaded to: {{ file_path }}</p>
+
+    <h2>Summary Report</h2>
+    <ul>
+        <li><strong>Number of Rows:</strong> {{ num_rows }}</li>
+        <li><strong>Number of Columns:</strong> {{ num_columns }}</li>
+        <li><strong>Columns:</strong> {{ columns }}</li>
+    </ul>
+
+    <h3>Data Types</h3>
+    <ul>
+        {% for col, dtype in data_types.items %}
+            <li><strong>{{ col }}:</strong> {{ dtype }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Summary Statistics</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Statistic</th>
+                {% for col in summary_statistics.keys %}
+                    <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for stat, values in summary_statistics.items %}
+                <tr>
+                    <td>{{ stat }}</td>
+                    {% for col, value in values.items %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
